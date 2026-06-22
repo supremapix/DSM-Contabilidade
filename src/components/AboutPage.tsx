@@ -36,7 +36,7 @@ export default function AboutPage() {
         {/* Feature Hero Image: img-dms.png */}
         <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:scale-101 transition-transform duration-300">
           <img 
-            src="https://dsmcontabilidade.digital/img/img-dms.png" 
+            src="https://img.dsmcontabilidade.digital/img-dms.png" 
             alt="Sede Própria DSM Contabilidade Curitiba" 
             className="w-full h-auto object-contain rounded-2xl mx-auto shadow-inner"
             referrerPolicy="no-referrer"
@@ -54,7 +54,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <div className="rounded-xl overflow-hidden shadow-inner border border-slate-100 bg-slate-50 relative group">
                 <img 
-                  src="https://dsmcontabilidade.digital/img/davi.png" 
+                  src="https://img.dsmcontabilidade.digital/davi.png" 
                   alt="Davy Santos Morais - Diretor DSM Contabilidade" 
                   className="w-full h-72 object-contain bg-slate-100 p-2 object-center transition-transform group-hover:scale-103"
                   referrerPolicy="no-referrer"

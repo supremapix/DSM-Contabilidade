@@ -219,9 +219,7 @@ async function runPrerender() {
       "url": canonicalUrl
     };
 
-    const seoImage = route.path.includes('contabilidade-em') 
-      ? 'https://dsmcontabilidade.digital/img/cartao-contador.png' 
-      : 'https://dsmcontabilidade.digital/img/cartao-dsm.webp';
+    const seoImage = 'https://img.dsmcontabilidade.digital/cartao-contador.png';
 
     // Compile customized head insertions
     const customHead = `
@@ -229,6 +227,12 @@ async function runPrerender() {
   <meta name="description" content="${route.description}" />
   <meta name="keywords" content="${route.keywords}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  
+  <!-- RealFaviconGenerator standard icons -->
+  <link rel="icon" type="image/png" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" sizes="96x96" />
+  <link rel="apple-touch-icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
+  <link rel="shortcut icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
+
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${route.title}" />
   <meta property="og:description" content="${route.description}" />

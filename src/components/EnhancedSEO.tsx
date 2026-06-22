@@ -41,17 +41,15 @@ export default function EnhancedSEO({
   
   const allKeywords = Array.from(new Set([...defaultKeywords, ...keywords]));
   
-  // Determine SEO image based on page context (Location page vs default pages)
-  const seoImage = locationName 
-    ? "https://dsmcontabilidade.digital/img/cartao-contador.png" 
-    : "https://dsmcontabilidade.digital/img/cartao-dsm.webp";
+  // Determine SEO image based on page context
+  const seoImage = "https://img.dsmcontabilidade.digital/cartao-contador.png";
 
   // Specific local business schema for DSM Contabilidade (Sede Bacacheri)
   const dsmLocalBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "AccountingService",
     "name": "DSM Contabilidade",
-    "image": "https://dsmcontabilidade.digital/img/cartao-dsm.webp",
+    "image": "https://img.dsmcontabilidade.digital/cartao-contador.png",
     "@id": "https://dsmcontabilidade.com.br/#identity",
     "url": "https://dsmcontabilidade.com.br",
     "telephone": "+55-41-99143-0464",
@@ -119,6 +117,11 @@ export default function EnhancedSEO({
       <meta name="description" content={description} />
       <meta name="keywords" content={allKeywords.join(', ')} />
       <link rel="canonical" href={currentUrl} />
+
+      {/* RealFaviconGenerator standard icons */}
+      <link rel="icon" type="image/png" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" sizes="96x96" />
+      <link rel="apple-touch-icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
+      <link rel="shortcut icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
 
       {/* Resource Hints (Preload / Prefetch) para Carregamento Ultrarrápido */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />

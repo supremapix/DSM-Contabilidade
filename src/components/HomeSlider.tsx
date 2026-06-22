@@ -5,14 +5,14 @@ import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 const SLIDES = [
   {
     id: 1,
-    pc: 'https://dsmcontabilidade.digital/img/dsm-slider.png',
-    mobile: 'https://dsmcontabilidade.digital/img/slider-dsm-movel.png',
+    pc: 'https://img.dsmcontabilidade.digital/dsm-slider.png',
+    mobile: 'https://img.dsmcontabilidade.digital/slider-dsm-movel.png',
     alt: 'DSM Contabilidade Slider 1'
   },
   {
     id: 2,
-    pc: 'https://dsmcontabilidade.digital/img/slider-2.png',
-    mobile: 'https://dsmcontabilidade.digital/img/slider-dsm-movel-pr.png',
+    pc: 'https://img.dsmcontabilidade.digital/slider-2.png',
+    mobile: 'https://img.dsmcontabilidade.digital/slider-dsm-movel-pr.png',
     alt: 'DSM Contabilidade Slider 2'
   }
 ];

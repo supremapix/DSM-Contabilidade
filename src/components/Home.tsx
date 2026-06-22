@@ -182,7 +182,7 @@ export default function Home() {
                 <div className="relative rounded-xl bg-slate-50 p-3 text-center space-y-3 border border-slate-100">
                   <div className="rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white max-h-[180px] flex items-center justify-center">
                     <img 
-                      src="https://dsmcontabilidade.digital/img/cartao-dsm.webp" 
+                      src="https://img.dsmcontabilidade.digital/cartao-dsm.webp" 
                       alt="Cartão Oficial DSM Contabilidade - CRC/PR Davy Santos Morais" 
                       className="w-full h-auto object-contain max-h-[170px] p-1"
                       referrerPolicy="no-referrer"

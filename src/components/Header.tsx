@@ -170,7 +170,7 @@ export default function Header({ fontSizeLevel, onIncreaseFont, onDecreaseFont }
             {/* Logo Brand Title */}
             <Link to="/" className="flex items-center py-1 group shrink-0" id="logo-dsm-link">
               <img 
-                src="https://dsmcontabilidade.digital/img/dsm.webp" 
+                src="https://img.dsmcontabilidade.digital/dsm.webp" 
                 alt="DSM Contabilidade Logo" 
                 className="h-14 xl:h-16 object-contain transition-transform group-hover:scale-102"
                 referrerPolicy="no-referrer"

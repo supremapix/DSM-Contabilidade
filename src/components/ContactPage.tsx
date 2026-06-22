@@ -58,7 +58,7 @@ export default function ContactPage() {
             {/* Visual Budget Banner requested */}
             <div className="rounded-xl overflow-hidden shadow-xs border border-slate-200 bg-slate-50 relative group">
               <img 
-                src="https://dsmcontabilidade.digital/img/cartao-dsm.webp" 
+                src="https://img.dsmcontabilidade.digital/cartao-dsm.webp" 
                 alt="Cartão Oficial DSM Contabilidade - CRC/PR Davy Santos Morais" 
                 className="w-full h-auto object-contain transition-transform group-hover:scale-103"
                 referrerPolicy="no-referrer"

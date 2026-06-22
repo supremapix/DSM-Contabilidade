@@ -58,7 +58,7 @@ export default function Footer() {
           <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
             <Link to="/" className="inline-block hover:scale-102 transition-transform">
               <img 
-                src="https://dsmcontabilidade.digital/img/dsm.webp" 
+                src="https://img.dsmcontabilidade.digital/dsm.webp" 
                 alt="DSM Contabilidade Logo" 
                 className="h-16 object-contain bg-white rounded-xl p-1.5 shadow-md"
                 referrerPolicy="no-referrer"

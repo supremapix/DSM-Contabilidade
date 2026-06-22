@@ -226,7 +226,7 @@ export default function LocationPage() {
             {/* Localized Semantic SEO Trust Card */}
             <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 p-3 sm:p-4 shadow-md">
               <img 
-                src="https://dsmcontabilidade.digital/img/cartao-contador.png" 
+                src="https://img.dsmcontabilidade.digital/cartao-dsm.webp" 
                 alt={`Davy Santos Morais - Contador de Confiança no bairro ${location.name}`} 
                 title={`WhatsApp Contador Davy Santos Morais - Atendimento Completo em ${location.name}`}
                 className="w-full h-auto object-contain rounded-xl hover:scale-101 transition-transform duration-300"

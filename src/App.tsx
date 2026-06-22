@@ -16,6 +16,7 @@ import ContactPage from './components/ContactPage';
 import LocationPage from './components/LocationPage';
 import AboutPage from './components/AboutPage';
 import SitemapPage from './components/SitemapPage';
+import FloatingShare from './components/FloatingShare';
 
 // Scroll to top on route navigate
 function ScrollToTop() {
@@ -152,6 +153,9 @@ export default function App() {
             </a>
 
           </div>
+
+          {/* Persistent Floating Share Widget on the left side */}
+          <FloatingShare />
 
         </div>
       </Router>

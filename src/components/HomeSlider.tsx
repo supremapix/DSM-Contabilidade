@@ -91,8 +91,8 @@ export default function HomeSlider() {
       onMouseEnter={() => setIsAutoplay(false)}
       onMouseLeave={() => setIsAutoplay(true)}
     >
-      {/* Aspect Ratio Sized Layout Container for absolute responsiveness - perfect fit on mobile */}
-      <div className="relative w-full aspect-square md:aspect-auto md:h-[500px] lg:h-[560px] xl:h-[620px]">
+      {/* Aspect Ratio Sized Layout Container for absolute responsiveness - perfect fit on mobile & wide displays */}
+      <div className="relative w-full max-w-[1920px] mx-auto aspect-square md:aspect-[2.82/1] max-h-[620px] overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={currentIndex}

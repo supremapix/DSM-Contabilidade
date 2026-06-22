@@ -1,0 +1,10 @@
+{
+  "name": "DSM Contabilidade",
+  "description": "Site profissional da DSM Contabilidade em Curitiba com SEO avançado, sitemap e pré-renderização de páginas para todos os bairros e cidades do Paraná.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

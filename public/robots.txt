@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap generated automatically during build
+Sitemap: https://dsmcontabilidade.com.br/sitemap.xml

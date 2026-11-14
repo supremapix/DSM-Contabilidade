@@ -20,10 +20,18 @@ import FloatingShare from './components/FloatingShare';
 
 // Scroll to top on route navigate
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
+    if (hash) {
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (target) {
+        target.style.scrollMarginTop = '180px';
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
+        return;
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+  }, [pathname, hash]);
   return null;
 }
 

@@ -5,6 +5,7 @@
 
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface EnhancedSEOProps {
   title: string;
@@ -25,7 +26,16 @@ export default function EnhancedSEO({
   schema,
   locationName
 }: EnhancedSEOProps) {
-  const currentUrl = canonicalUrl || typeof window !== 'undefined' ? window.location.href : 'https://dsmcontabilidade.com.br';
+  const { pathname } = useLocation();
+  const currentUrl = canonicalUrl || new URL(pathname, 'https://www.dsmcontabilidade.digital').href;
+  useEffect(() => {
+    const links = Array.from(document.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]'));
+    const canonical = links.shift() || document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = currentUrl;
+    if (!canonical.parentNode) document.head.appendChild(canonical);
+    links.forEach(link => link.remove());
+  }, [currentUrl]);
   const defaultKeywords = [
     "DSM Contabilidade",
     "contabilidade Curitiba",
@@ -50,8 +60,8 @@ export default function EnhancedSEO({
     "@type": "AccountingService",
     "name": "DSM Contabilidade",
     "image": "https://img.dsmcontabilidade.digital/cartao-contador.png",
-    "@id": "https://dsmcontabilidade.com.br/#identity",
-    "url": "https://dsmcontabilidade.com.br",
+    "@id": "https://www.dsmcontabilidade.digital/#identity",
+    "url": "https://www.dsmcontabilidade.digital",
     "telephone": "+55-41-99143-0464",
     "priceRange": "$$",
     "address": {
@@ -95,7 +105,7 @@ export default function EnhancedSEO({
     "isPartOf": {
       "@type": "WebSite",
       "name": "DSM Contabilidade",
-      "url": "https://dsmcontabilidade.com.br"
+      "url": "https://www.dsmcontabilidade.digital"
     },
     "about": {
       "@type": "AccountingService",
@@ -106,7 +116,7 @@ export default function EnhancedSEO({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "DSM Contabilidade",
-    "url": "https://dsmcontabilidade.com.br",
+    "url": "https://www.dsmcontabilidade.digital",
     "description": "DSM Contabilidade - Escritório contábil em Curitiba e Região Metropolitana"
   });
 
@@ -116,7 +126,6 @@ export default function EnhancedSEO({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={allKeywords.join(', ')} />
-      <link rel="canonical" href={currentUrl} />
 
       {/* RealFaviconGenerator standard icons */}
       <link rel="icon" type="image/png" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" sizes="96x96" />

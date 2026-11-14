@@ -179,7 +179,7 @@ async function runPrerender() {
     }
 
     const outputFilePath = path.join(routeDirPath, 'index.html');
-    const canonicalUrl = `https://dsmcontabilidade.com.br/${route.path}`;
+    const canonicalUrl = `https://www.dsmcontabilidade.digital/${route.path}`;
 
     // Schema LocalBusiness DSM
     const schemaIdentity = {
@@ -187,8 +187,8 @@ async function runPrerender() {
       "@type": "AccountingService",
       "name": "DSM Contabilidade",
       "image": "https://xyxpexbankcbwidpobzb.supabase.co/storage/v1/object/public/assets/sites/89f806ee-d5a5-4d80-a00f-0e93b7f72c72/1769611656134-3hvsbk.jfif",
-      "@id": "https://dsmcontabilidade.com.br/#identity",
-      "url": "https://dsmcontabilidade.com.br",
+      "@id": "https://www.dsmcontabilidade.digital/#identity",
+      "url": "https://www.dsmcontabilidade.digital",
       "telephone": "+55-41-99143-0464",
       "priceRange": "$$",
       "address": {
@@ -304,7 +304,7 @@ async function runPrerender() {
   sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
   routes.forEach(route => {
-    const loc = `https://dsmcontabilidade.com.br/${route.path}`;
+    const loc = `https://www.dsmcontabilidade.digital/${route.path}`;
     sitemapXml += `  <url>\n`;
     sitemapXml += `    <loc>${loc}</loc>\n`;
     sitemapXml += `    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n`;

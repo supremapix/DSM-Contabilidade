@@ -107,17 +107,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#contabilidade-mensal" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
+                <a href="/#contabilidade-mensal" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
                   Contabilidade Geral e Mensal
                 </a>
               </li>
               <li>
-                <a href="#folha-pagamento" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
+                <a href="/#folha-pagamento" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
                   Departamento Pessoal e Folha
                 </a>
               </li>
               <li>
-                <a href="#regularizacao" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
+                <a href="/#regularizacao" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
                   Regularização Fiscal & Impostos
                 </a>
               </li>

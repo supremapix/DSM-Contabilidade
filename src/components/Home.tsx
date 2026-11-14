@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Sparkles, Phone, MessageSquare, ShieldCheck, HelpCircle, Activity, ChevronDown, ChevronRight, Award, Users, Check, Building2, Calendar } from 'lucide-react';
 import { getAllLocations } from '../data/locations';
 import HomeSlider from './HomeSlider';
+import EnhancedSEO from './EnhancedSEO';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -99,6 +100,7 @@ export default function Home() {
 
   return (
     <div className="space-y-6 sm:space-y-8 bg-white text-[#111111]">
+      <EnhancedSEO title="DSM Contabilidade | Escritório de Contabilidade no Bacacheri, Curitiba" description="DSM Contabilidade em Curitiba: serviços de abertura de empresas, contabilidade mensal, tributos e folha de pagamento. Fale com o contador Davy Santos Morais." />
       
       {/* Dynamically Responsive Premium Image Slider */}
       <HomeSlider />

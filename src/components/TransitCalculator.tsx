@@ -24,39 +24,12 @@ function getHaversineDistance(lat1: number, lon1: number, lat2: number, lon2: nu
 export default function TransitCalculator() {
   const [selectedCity, setSelectedCity] = useState(METRO_CITIES[0]);
   const [transportMode, setTransportMode] = useState<'carro' | 'caminhao' | 'onibus'>('carro');
-  const [trafficStatus, setTrafficStatus] = useState<'normal' | 'moderado' | 'intenso'>('normal');
   const [trafficMultiplier, setTrafficMultiplier] = useState(1);
   const [userLocation, setUserLocation] = useState<{ lat: number, lng: number, name: string } | null>(null);
   const [geoLoading, setGeoLoading] = useState(false);
   const [geoError, setGeoError] = useState<string | null>(null);
   const [calculatedDistance, setCalculatedDistance] = useState<number | null>(null);
   const [calculatedTime, setCalculatedTime] = useState<number | null>(null);
-  const [currentTimeStr, setCurrentTimeStr] = useState('');
-
-  // Update current time display & simulate live traffic fluctuations based on time of day
-  useEffect(() => {
-    const updateTimeAndTraffic = () => {
-      const now = new Date();
-      setCurrentTimeStr(now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-      
-      const hour = now.getHours();
-      // Peak Rush hours: 7:30 - 9:00, 17:30 - 19:30
-      if ((hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19)) {
-        setTrafficStatus('intenso');
-        setTrafficMultiplier(1.45); // 45% delay increase
-      } else if (hour >= 11 && hour <= 14) {
-        setTrafficStatus('moderado');
-        setTrafficMultiplier(1.2); // 20% delay increase
-      } else {
-        setTrafficStatus('normal');
-        setTrafficMultiplier(1.0); // No delays
-      }
-    };
-
-    updateTimeAndTraffic();
-    const interval = setInterval(updateTimeAndTraffic, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Recalculate distance and time based on variables
   useEffect(() => {
@@ -132,7 +105,7 @@ export default function TransitCalculator() {
     const locName = userLocation ? "minha localização atual" : selectedCity.name;
     const distanceText = calculatedDistance ? `${calculatedDistance} km` : '';
     const modeText = transportMode === 'carro' ? 'Carro' : transportMode === 'caminhao' ? 'Caminhão' : 'Ônibus/Transporte Público';
-    const textMsg = `Olá DSM Contabilidade! Acessei a Calculadora Metropolitana. Gostaria de abrir uma empresa/ter suporte contábil. Estou em: ${locName} (${distanceText} de distância). Escolhi transporte de: ${modeText}. Gostaria de um atendimento contábil exclusivo!`;
+    const textMsg = `Olá DSM Contabilidade! Acessei a Calculadora Metropolitana. Gostaria de abrir uma empresa/ter suporte contábil. Estou em: ${locName} (referência ilustrativa de ${distanceText}, não é rota calculada). Escolhi transporte de: ${modeText}. Gostaria de um atendimento contábil exclusivo!`;
     return `https://api.whatsapp.com/send?phone=5541991430464&text=${encodeURIComponent(textMsg)}`;
   };
 
@@ -140,7 +113,7 @@ export default function TransitCalculator() {
     <div className="py-12 bg-slate-50 text-slate-850" id="transit-calculator-app">
       <EnhancedSEO 
         title="Calculadora Metropolitana de Deslocamento RMC - DSM Contabilidade"
-        description="Consulte em tempo real o tempo de deslocamento entre as cidades metropolitanas e a DSM Contabilidade Bacacheri Curitiba. Suporte ágil e simplificado."
+        description="Simule uma estimativa de deslocamento até a DSM Contabilidade no Bacacheri. Valores ilustrativos, sem trânsito ao vivo; confirme o trajeto em um aplicativo de mapas."
         keywords={["calculadora deslocamento curitiba", "logistica RMC", "transporte Pinhais Curitiba", "distancia Colombo Bacacheri", "abrir empresa regiao metropolitana"]}
       />
 
@@ -196,7 +169,7 @@ export default function TransitCalculator() {
                     <MapPin className="text-green-600 animate-bounce" size={20} />
                     <div>
                       <span className="text-green-950 font-extrabold text-sm block">Localização Ativada!</span>
-                      <span className="text-xs text-green-700 block mt-0.5">Sua distância calculada em tempo real até a DSM Contabilidade Bacacheri.</span>
+                      <span className="text-xs text-green-700 block mt-0.5">Distância em linha reta até a sede. Não representa o percurso pelas ruas.</span>
                     </div>
                   </div>
                   <button 
@@ -216,7 +189,7 @@ export default function TransitCalculator() {
                   className="w-full bg-slate-100 hover:bg-slate-200/80 text-slate-800 font-bold text-sm py-2.5 px-4 rounded-lg flex items-center justify-center gap-2 border border-slate-300 hover:border-slate-400 transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   <Locate size={16} className={`text-blue-700 ${geoLoading ? 'animate-spin' : ''}`} />
-                  <span>{geoLoading ? 'Obtendo GPS...' : 'Usar meu GPS para Calcular exato'}</span>
+                  <span>{geoLoading ? 'Obtendo GPS...' : 'Estimar distância com minha localização'}</span>
                 </button>
               )}
 
@@ -267,33 +240,19 @@ export default function TransitCalculator() {
                   }`}
                 >
                   <Bus size={26} className={transportMode === 'onibus' ? 'text-cyan-700' : ''} />
-                  <span>Bus</span>
+                  <span>Ônibus</span>
                 </button>
               </div>
             </div>
 
-            {/* Traffic live state info banner */}
-            <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 flex justify-between items-center text-xs text-slate-650">
-              <div>
-                <span className="text-slate-500 block font-semibold">Horário de Monitoria RMC:</span>
-                <span className="text-slate-800 text-sm font-extrabold block mt-0.5">{currentTimeStr}</span>
-              </div>
-              <div className="text-right">
-                <span className="text-slate-500 block font-semibold">Status de Tráfego:</span>
-                {trafficStatus === 'intenso' ? (
-                  <span className="text-red-650 font-bold uppercase inline-flex items-center gap-1 mt-0.5">
-                    ● Trânsito Intenso (Pico)
-                  </span>
-                ) : trafficStatus === 'moderado' ? (
-                  <span className="text-amber-750 font-bold uppercase inline-flex items-center gap-1 mt-0.5 font-sans">
-                    ● Tráfego Moderado
-                  </span>
-                ) : (
-                  <span className="text-green-700 font-bold uppercase inline-flex items-center gap-1 mt-0.5 text-xs">
-                    ● Tráfego Livre
-                  </span>
-                )}
-              </div>
+            <div className="bg-slate-100 p-4 rounded-xl border border-slate-200 text-sm">
+              <label htmlFor="simulation-delay" className="block font-bold text-slate-800 mb-2">Margem de tempo para simular</label>
+              <select id="simulation-delay" value={trafficMultiplier} onChange={e => setTrafficMultiplier(Number(e.target.value))} className="w-full rounded-lg border border-slate-300 bg-white p-3">
+                <option value={1}>Sem margem adicional</option>
+                <option value={1.2}>Acrescentar 20% de tempo</option>
+                <option value={1.45}>Acrescentar 45% de tempo</option>
+              </select>
+              <p className="mt-3 text-slate-700">Simulação ilustrativa, sem consulta ao trânsito ou às linhas de ônibus. A margem é escolhida por você, não uma medição das condições atuais.</p>
             </div>
 
           </div>
@@ -319,8 +278,15 @@ export default function TransitCalculator() {
                 </p>
 
                 <p className="text-xs text-slate-500 mt-2 px-3">
-                  Distância Total a Percorrer: <strong className="text-slate-900">{calculatedDistance} km</strong>
+                  {userLocation ? 'Distância em linha reta:' : 'Distância de referência:'} <strong className="text-slate-900">{calculatedDistance} km</strong>
                 </p>
+              </div>
+
+              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-800">
+                <h2 className="font-bold mb-2">Antes de sair</h2>
+                <p>Os valores por cidade são referências fixas. Com a localização ativada, a distância é em linha reta e o tempo usa velocidades médias hipotéticas: carro 60 km/h, carga 45 km/h e ônibus 30 km/h. Não são considerados ruas, paradas, espera, acessibilidade ou trânsito real.</p>
+                <p className="mt-2">Confirme o atendimento com a DSM e consulte o trajeto e a duração em um aplicativo de mapas antes de viajar.</p>
+                <a className="inline-block mt-3 font-bold text-blue-800 underline" href="https://www.google.com/maps/dir/?api=1&destination=Condom%C3%ADnio%20do%20Edif%C3%ADcio%20Marsala%20Rua%20Deputado%20At%C3%ADlio%20de%20Almeida%20Barbosa%2076%20Bacacheri%20Curitiba%20PR" target="_blank" rel="noopener noreferrer">Conferir trajeto no Google Maps</a>
               </div>
 
               {/* Accessibility/Senior Advice Box */}
@@ -334,7 +300,7 @@ export default function TransitCalculator() {
                 <div className="flex gap-2 items-start">
                   <Navigation className="text-blue-700 shrink-0 mt-0.5" size={16} />
                   <p>
-                    <strong>Sede de fácil acesso:</strong> Apenas {calculatedDistance} km de sua área. Se preferir reuniões físicas ou consultoria com café, o Edifício Marsala fica no coração do Bacacheri com estacionamento terceirizado na frente.
+                    <strong>Sede de fácil acesso:</strong> Use um aplicativo de mapas para confirmar o trajeto. Se preferir reuniões físicas ou consultoria com café, o Edifício Marsala fica no coração do Bacacheri com estacionamento terceirizado na frente.
                   </p>
                 </div>
               </div>

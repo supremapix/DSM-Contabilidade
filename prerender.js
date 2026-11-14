@@ -99,7 +99,7 @@ async function runPrerender() {
   routes.push({
     path: 'calculadora-deslocamento',
     title: 'Calculadora Metropolitana de Deslocamento RMC — DSM Contabilidade',
-    description: 'Consulte em tempo real a distância e tempo de deslocamento entre as cidades da Região Metropolitana de Curitiba e nossa sede no Bacacheri.',
+    description: 'Simule uma estimativa de deslocamento até a DSM Contabilidade no Bacacheri. Valores ilustrativos, sem trânsito ao vivo; confirme o trajeto em um aplicativo de mapas.',
     keywords: 'calculadora deslocamento curitiba, distancia pinhais curitiba, transito RMC, logistica bacacheri',
     bodyTitle: 'Calculadora Logística Metropolitana RMC',
     priority: '0.8'

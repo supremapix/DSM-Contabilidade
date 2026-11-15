@@ -88,7 +88,7 @@ export default function ContactPage() {
                 <li className="flex items-center gap-3">
                   <Phone className="text-green-700 shrink-0" size={20} />
                   <div>
-                    <span className="text-slate-900 font-extrabold block">Atendimento por WhatsApp</span>
+                    <span className="text-slate-900 font-extrabold block">Telefone para ligação</span>
                     <a href="tel:41991430464" className="text-green-700 hover:text-green-800 transition-colors border-b border-dashed border-green-600 text-base sm:text-lg font-bold">
                       (41) 99143-0464
                     </a>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                 <li className="flex items-center gap-3 text-xs sm:text-sm">
                   <Clock className="text-yellow-600 shrink-0" size={18} />
                   <div>
-                    <span className="text-slate-500 block font-semibold">Horário Consular</span>
+                    <span className="text-slate-500 block font-semibold">Horário de atendimento</span>
                     <span className="text-slate-800 font-semibold">Segunda a Sexta — das 08h30 às 18h00</span>
                   </div>
                 </li>
@@ -119,7 +119,8 @@ export default function ContactPage() {
 
           {/* Form block */}
           <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-6 sm:p-8">
-            <h3 className="text-xl font-bold text-slate-900 mb-6 font-display">Envie suas Necessidades</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-6 font-display">Prepare sua mensagem</h3>
+            <p className="text-sm text-slate-600 mb-4">O formulário abre o WhatsApp com os dados preenchidos. Revise a mensagem e confirme o envio no aplicativo. Não inclua senhas, documentos ou dados financeiros confidenciais neste primeiro contato.</p>
             
             <form onSubmit={handleCompleteContactSubmit} className="space-y-4">
               <div>
@@ -175,7 +176,7 @@ export default function ContactPage() {
                   className="w-full bg-green-600 hover:bg-green-500 text-white font-black py-4 px-4 rounded-xl flex items-center justify-center gap-2.5 transition-transform hover:scale-101 cursor-pointer text-base sm:text-lg shadow-lg"
                 >
                   <MessageSquare size={20} />
-                  <span>Chamar no WhatsApp e Retornamos Ágil</span>
+                  <span>Preparar mensagem no WhatsApp</span>
                 </button>
               </div>
             </form>

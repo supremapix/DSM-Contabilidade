@@ -123,6 +123,16 @@ async function runPrerender() {
     priority: '0.8'
   });
 
+  // Existing footer utility route: build a direct HTML entry without adding it to the XML.
+  routes.push({
+    path: 'mapa-do-site',
+    title: 'Mapa do Site Completo | DSM Contabilidade',
+    description: 'Navegue por todas as páginas oficiais, guias locais, cidades e bairros atendidos pelo escritório DSM Contabilidade.',
+    keywords: 'mapa do site DSM, bairros Curitiba, navegação DSM',
+    bodyTitle: 'Encontre uma página da DSM',
+    omitFromSitemap: true
+  });
+
   // 2. Add Official neighborhoods (Curitiba)
   OFFICIAL_BAIRROS.forEach(b => {
     routes.push({
@@ -262,6 +272,11 @@ async function runPrerender() {
       <h2>Telefone, e-mail e como chegar</h2>
       <p><a href="tel:+5541991430464">(41) 99143-0464</a> · <a href="mailto:davysantosmorais@hotmail.com">davysantosmorais@hotmail.com</a></p>
       <p>Edifício Marsala. Rua Deputado Atílio de Almeida Barbosa, 76, Bacacheri, Curitiba – PR. Segunda a sexta, das 8h30 às 18h.</p>
+      ` : route.path === 'mapa-do-site' ? `
+      <h2>Páginas principais</h2>
+      <ul><li><a href="/">Início</a></li><li><a href="/quem-somos">Quem somos</a></li><li><a href="/abrir-empresa">Abertura de empresa</a></li><li><a href="/contato">Contato</a></li><li><a href="/calculadora-deslocamento">Calculadora de deslocamento</a></li></ul>
+      <h2>Atendimento em Curitiba e região</h2>
+      <p><a href="/contabilidade-em/curitiba/bairro-bacacheri">Bacacheri</a> · <a href="/contabilidade-em/curitiba/bairro-agua-verde">Água Verde</a> · <a href="/contabilidade-em/regiao-metropolitana/pinhais">Pinhais</a></p>
       ` : '';
     // Static body to put inside <div id="root"> so bots see content on Ctrl+U
     const staticBodyText = route.path === '' ? `
@@ -344,7 +359,8 @@ async function runPrerender() {
   let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-  routes.forEach(route => {
+  const sitemapRoutes = routes.filter(route => !route.omitFromSitemap);
+  sitemapRoutes.forEach(route => {
     const loc = `https://www.dsmcontabilidade.digital/${route.path}`;
     sitemapXml += `  <url>\n`;
     sitemapXml += `    <loc>${loc}</loc>\n`;
@@ -357,7 +373,7 @@ async function runPrerender() {
 
   const sitemapOutputPath = path.join(distPath, 'sitemap.xml');
   fs.writeFileSync(sitemapOutputPath, sitemapXml, 'utf8');
-  console.log(`✅ sitemap.xml compilado com sucesso com ${routes.length} URLs!`);
+  console.log(`✅ sitemap.xml compilado com sucesso com ${sitemapRoutes.length} URLs!`);
 
   // ----------------------------------------------------
   // NETLIFY REDIRECTS GENERATION

@@ -30,7 +30,7 @@ export default function AboutPage() {
             Conheça a DSM Contabilidade no Bacacheri
           </h1>
           <p className="text-base sm:text-lg text-slate-600">
-            Desde 1982, a DSM Contabilidade atua no Bacacheri, em Curitiba. Conheça o escritório e converse com Davy Santos Morais sobre o atendimento ao seu negócio.
+            Fundada em 1982, a DSM Contabilidade tem escritório no Bacacheri, em Curitiba. Conheça o escritório e converse com Davy Santos Morais sobre o atendimento ao seu negócio.
           </p>
           <DsmContactActions message="Olá, Davy! Conheci a DSM Contabilidade pelo site e gostaria de conversar." />
         </div>
@@ -44,7 +44,7 @@ export default function AboutPage() {
             referrerPolicy="no-referrer"
           />
           <div className="text-center pt-3 text-xs text-slate-500 font-bold tracking-wide uppercase">
-            Sede Própria & Atendimento Presencial Qualificado - Desde 1982
+            Escritório da DSM Contabilidade no Bacacheri
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 text-base">Zelo e Conformidade</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Rigor absoluto no acompanhamento de normas federais, estaduais e municipais, garantindo proteção jurídica total contra multas e sanções.
+                  Acompanhamento das obrigações contábeis e organização de documentos e prazos de acordo com a atividade da empresa.
                 </p>
               </div>
 
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-bold text-slate-900 text-base">Planejamento Tributário</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Enquadramentos inteligentes para Simples Nacional, Fator R, e Lucro Presumido para amortizar seus impostos ao menor patamar legal.
+                  Orientação sobre enquadramento tributário e obrigações conforme a atividade e a situação da empresa.
                 </p>
               </div>
 
@@ -156,10 +156,10 @@ export default function AboutPage() {
         <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/80 text-center space-y-6 shadow-md">
           <h3 className="text-xl sm:text-2xl font-black text-slate-950 font-display">Sede Física Própria em Curitiba</h3>
           <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Nossa sede comercial está no coração do Bacacheri, com fácil acesso e estacionamento próprio para receber você para um café e planejar os rumos do seu sucesso empresarial.
+            O escritório fica no Edifício Marsala, na Rua Deputado Atílio de Almeida Barbosa, 76, Bacacheri, Curitiba. Entre em contato antes da visita para conversar sobre o atendimento.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            {["Zelo Legal", "Atendimento de Contador de Verdade", "Planejamento Especializado", "Constituição em 24h", "CRC/PR Ativo"].map((item) => (
+            {["Abertura de empresas", "Contabilidade mensal", "Tributos", "Folha de pagamento"].map((item) => (
               <span key={item} className="bg-slate-50 text-blue-800 border border-slate-200 text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-full">
                 ✓ {item}
               </span>

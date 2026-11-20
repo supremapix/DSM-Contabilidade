@@ -89,10 +89,10 @@ async function runPrerender() {
 
   routes.push({
     path: 'abrir-empresa',
-    title: 'Abertura de Empresa Rápida e Isenção de Honorários | DSM Contabilidade',
-    description: 'Abra seu CNPJ sem pagar honorários para o escritório contábil. Serviços ágeis de formalização e consultoria para pequenos empreendedores em Curitiba e Região.',
-    keywords: 'abrir CNPJ curitiba, abertura gratis de empresa, JUCEPAR, MEI facil curitiba, contador parana',
-    bodyTitle: 'Abertura de CNPJ Gratuita em Curitiba',
+    title: 'Abertura de empresa em Curitiba | DSM Contabilidade',
+    description: 'Entenda como começar a abrir sua empresa em Curitiba, quais informações reunir e a diferença entre a formalização de MEI e o serviço contábil.',
+    keywords: 'abertura de empresa em Curitiba, abrir CNPJ Curitiba, consulta prévia Curitiba, Jucepar, formalização MEI',
+    bodyTitle: 'Abertura de empresa em Curitiba',
     priority: '0.9'
   });
 
@@ -107,10 +107,10 @@ async function runPrerender() {
 
   routes.push({
     path: 'contato',
-    title: 'Suporte Consultivo Especializado e Orçamento | Contato DSM Contabilidade',
-    description: 'Como podemos te ajudar hoje? Entre em contato e converse com o contador exclusivo da DSM Contabilidade em Curitiba. Retorno no mesmo dia.',
+    title: 'Contato da DSM Contabilidade no Bacacheri, Curitiba',
+    description: 'Fale com o contador Davy Santos Morais por telefone ou WhatsApp. Veja o endereço e o horário da DSM Contabilidade no Bacacheri, Curitiba.',
     keywords: 'telefone dsm contabilidade, whatsapp contador curitiba, davy santos morais, atendimento contabil',
-    bodyTitle: 'Fale Conosco - Solicite um Orçamento Especializado',
+    bodyTitle: 'Fale com a DSM Contabilidade',
     priority: '0.8'
   });
 
@@ -250,6 +250,19 @@ async function runPrerender() {
   <script type="application/ld+json">${JSON.stringify(schemaPageDetails)}</script>
 `;
 
+    const internalDetails = route.path === 'abrir-empresa' ? `
+      <h2>O que ter em mãos na primeira conversa</h2>
+      <p>Descreva a atividade, a cidade e o endereço pretendido. Informe se haverá sócios ou empregados. Não envie documentos pessoais no primeiro contato.</p>
+      <p>Em Curitiba, veja quando se aplica a <a href="https://servicos.curitiba.pr.gov.br/consulta-previa-de-viabilidade-cpv-online/199">Consulta Prévia de Viabilidade</a>.</p>
+      <h2>Formalização do MEI e serviços contábeis</h2>
+      <p>Quem se enquadra pode se formalizar gratuitamente no <a href="https://www.gov.br/empresas-e-negocios/pt-br/empreendedor/quero-ser-mei">Portal do Empreendedor</a>. Isso é diferente de contratar assessoria contábil. Para os atos aplicáveis no Paraná, consulte a <a href="https://www.juntacomercial.pr.gov.br/Pagina/Tabela-de-precos">tabela da Junta Comercial</a>.</p>
+      <h2>Qual o prazo para abrir a empresa?</h2>
+      <p>O prazo varia conforme o tipo de empresa, a documentação e a análise dos órgãos envolvidos. Converse com a DSM sobre a sua situação.</p>
+      ` : route.path === 'contato' ? `
+      <h2>Telefone, e-mail e como chegar</h2>
+      <p><a href="tel:+5541991430464">(41) 99143-0464</a> · <a href="mailto:davysantosmorais@hotmail.com">davysantosmorais@hotmail.com</a></p>
+      <p>Edifício Marsala. Rua Deputado Atílio de Almeida Barbosa, 76, Bacacheri, Curitiba – PR. Segunda a sexta, das 8h30 às 18h.</p>
+      ` : '';
     // Static body to put inside <div id="root"> so bots see content on Ctrl+U
     const staticBodyText = route.path === '' ? `
     <main id="root-static" style="color:#12234a;background:#f7faff;padding:clamp(1.25rem,5vw,5rem);font-family:system-ui,sans-serif;line-height:1.6">
@@ -293,8 +306,8 @@ async function runPrerender() {
           <a href="https://api.whatsapp.com/send?phone=5541991430464" style="background-color: #16a34a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Falar com o Contador no WhatsApp: (41) 99143-0464</a>
         </div>
         
-        <h2>Zelo, Credibilidade e Experiência</h2>
-        <p>A DSM Contabilidade se destaca em Curitiba e Região Metropolitana pelo atendimento humanizado de contador exclusivo, planejamento tributário protetivo e suporte total para constituição e regularização de empresas de todos os portes.</p>
+        ${internalDetails || `<h2>Zelo, Credibilidade e Experiência</h2>
+        <p>A DSM Contabilidade se destaca em Curitiba e Região Metropolitana pelo atendimento humanizado de contador exclusivo, planejamento tributário protetivo e suporte total para constituição e regularização de empresas de todos os portes.</p>`}
         
         <h3>Contato & Sede Física</h3>
         <p>Visite-nos no Condomínio do Edifício Marsala, R. Dep. Atílio de Almeida Barbosa, 76 - CEP 82560-460 - Bairro Bacacheri / Boa Vista, Curitiba - PR. Telefone Comercial: (41) 99143-0464.</p>
@@ -335,7 +348,6 @@ async function runPrerender() {
     const loc = `https://www.dsmcontabilidade.digital/${route.path}`;
     sitemapXml += `  <url>\n`;
     sitemapXml += `    <loc>${loc}</loc>\n`;
-    sitemapXml += `    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n`;
     sitemapXml += `    <changefreq>weekly</changefreq>\n`;
     sitemapXml += `    <priority>${route.priority}</priority>\n`;
     sitemapXml += `  </url>\n`;

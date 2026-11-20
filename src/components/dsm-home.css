@@ -81,3 +81,12 @@
   .dsm-hero-grid{gap:1.4rem}
 }
 @media(prefers-reduced-motion:reduce){body:has(.dsm-home) #dsm-header,body:has(.dsm-home) .dsm-floating-share *,body:has(.dsm-home) #sticky-whatsapp-bubble *{animation:none!important;transition:none!important}}
+
+.dsm-inner-list{display:grid;list-style:decimal;margin:0;padding-left:1.6rem;gap:.9rem}
+.dsm-inner-list li{padding:.8rem;border:1px solid var(--line);border-radius:.85rem}
+.dsm-inner-list li::marker{color:var(--blue);font-weight:700}
+.dsm-inner-list p a,.dsm-inner-source a,.dsm-inner .dsm-places p a,.dsm-inner .dsm-faq p a{color:var(--blue);text-decoration:underline;text-underline-offset:.2em}
+.dsm-inner-source{margin-top:1rem}
+.dsm-inner .dsm-places{align-self:center}
+.dsm-inner .dsm-places .dsm-actions{margin-block:0}
+.dsm-inner .dsm-places .dsm-btn{margin:0}

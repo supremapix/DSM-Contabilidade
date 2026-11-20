@@ -81,9 +81,9 @@ async function runPrerender() {
   routes.push({
     path: '',
     title: 'DSM Contabilidade | Escritório de Contabilidade no Bacacheri, Curitiba',
-    description: 'DSM Contabilidade se destaca pelo atendimento humanizado de contador exclusivo. Desde 1982 prestando serviços de abertura de empresas, impostos e folhas.',
+    description: 'DSM Contabilidade no Bacacheri, Curitiba: abertura de empresas, contabilidade mensal, consultoria fiscal e folha de pagamento. Fale com Davy Santos Morais.',
     keywords: 'contabilidade curitiba, abrir empresa curitiba, contador bacacheri, dsm contabilidade',
-    bodyTitle: 'DSM Contabilidade Sede Bacacheri',
+    bodyTitle: 'Contabilidade em Curitiba para abrir e cuidar da sua empresa',
     priority: '1.0'
   });
 
@@ -251,7 +251,35 @@ async function runPrerender() {
 `;
 
     // Static body to put inside <div id="root"> so bots see content on Ctrl+U
-    const staticBodyText = `
+    const staticBodyText = route.path === '' ? `
+    <main id="root-static" style="color:#12234a;background:#f7faff;padding:clamp(1.25rem,5vw,5rem);font-family:system-ui,sans-serif;line-height:1.6">
+      <p>Bacacheri · Curitiba</p>
+      <h1 style="font-size:clamp(2rem,5.2vw,4.35rem);line-height:1.05;max-width:14ch">${route.bodyTitle}</h1>
+      <p>Vai abrir um CNPJ, trocar de contador ou organizar os tributos e a folha? Fale direto com Davy Santos Morais e entenda o próximo passo para o seu negócio.</p>
+      <p><a href="https://api.whatsapp.com/send?phone=5541991430464">Falar no WhatsApp</a> · <a href="tel:+5541991430464">(41) 99143-0464</a></p>
+      <section>
+        <h2>O que você precisa resolver?</h2>
+        <ul>
+          <li><a href="/abrir-empresa">Abertura de empresas</a>: saiba quais informações reunir antes de formalizar o negócio.</li>
+          <li><a href="/contato">Contabilidade mensal</a>: organize documentos e entregas, ou converse sobre trocar de contador.</li>
+          <li><a href="/contato">Consultoria fiscal</a>: esclareça dúvidas sobre tributos, enquadramento e obrigações.</li>
+          <li><a href="/contato">Departamento pessoal e folha</a>: organize admissões, férias e informações da equipe.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Escritório de contabilidade no Bacacheri</h2>
+        <p>Rua Deputado Atílio de Almeida Barbosa, 76, Bacacheri, Curitiba – PR.</p>
+        <p>Consulte o atendimento em <a href="/contabilidade-em/curitiba/bairro-bacacheri">Bacacheri</a>, <a href="/contabilidade-em/curitiba/bairro-agua-verde">Água Verde</a>, <a href="/contabilidade-em/curitiba/bairro-batel">Batel</a> ou confira o <a href="/mapa-do-site">mapa do site</a>.</p>
+      </section>
+      <section>
+        <h2>Dúvidas frequentes</h2>
+        <h3>O que eu preciso informar no primeiro contato?</h3>
+        <p>Conte qual é a atividade, em que cidade pretende atuar e se já tem CNPJ. Não precisa anexar documentos pessoais nesse primeiro contato.</p>
+        <h3>Quanto custa abrir uma empresa em Curitiba?</h3>
+        <p>O orçamento depende das atividades, do tipo de empresa e das etapas necessárias. Peça a discriminação de honorários e eventuais taxas de registro antes de decidir.</p>
+      </section>
+    </main>
+    ` : `
     <div id="root-static" style="background-color: #f8fafc; color: #0f172a; font-family: sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
       <header style="border-bottom: 2px solid #0b3fa3; padding-bottom: 20px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between;">
         <span style="font-size: 24px; font-weight: bold; color: #0f172a;">DSM Contabilidade</span>

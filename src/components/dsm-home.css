@@ -90,3 +90,5 @@
 .dsm-inner .dsm-places{align-self:center}
 .dsm-inner .dsm-places .dsm-actions{margin-block:0}
 .dsm-inner .dsm-places .dsm-btn{margin:0}
+.dsm-inner .dsm-places{grid-template-columns:minmax(0,1fr)}
+.dsm-inner .dsm-places a[href^="mailto:"]{overflow-wrap:anywhere;max-width:100%}

@@ -57,7 +57,7 @@ export default function Header({ fontSizeLevel, onIncreaseFont, onDecreaseFont }
     <>
       <header className="sticky top-0 z-50 w-full animate-keyframes" id="dsm-header">
       {/* Top Bar / Ticker - continuous marquee scroll on mobile, static on desktop */}
-      <div className="bg-[#0B255F] text-white py-2 px-1 relative overflow-hidden text-sm font-semibold border-b border-blue-900/40">
+      <div className="dsm-header-legacy-top bg-[#0B255F] text-white py-2 px-1 relative overflow-hidden text-sm font-semibold border-b border-blue-900/40">
         
         {/* Mobile Scrolling Letreiro (Continuous Infinite Ticker) */}
         <div className="block lg:hidden w-full overflow-hidden">
@@ -208,10 +208,14 @@ export default function Header({ fontSizeLevel, onIncreaseFont, onDecreaseFont }
         </div>
       </div>
 
+      <div className="dsm-home-mobile-nav">
+        <Link to="/" aria-label="Início da DSM Contabilidade"><img src="https://img.dsmcontabilidade.digital/dsm.webp" alt="DSM Contabilidade" /></Link>
+        <button type="button" aria-label="Menu principal" aria-expanded={isOpen} onClick={() => setIsOpen(true)}><Menu size={20} aria-hidden="true" /> Menu</button>
+      </div>
     </header>
 
     {/* Floating Menu Capsule - Stuck on the right side on Mobile */}
-    <div className="lg:hidden fixed bottom-24 right-4 z-40 select-none animate-fountain">
+    <div className="dsm-header-legacy-menu lg:hidden fixed bottom-24 right-4 z-40 select-none animate-fountain">
       {/* Dynamic Trigger Pill */}
       <button
         onClick={() => setIsOpen(true)}

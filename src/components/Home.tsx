@@ -10,6 +10,7 @@ const talkToDavy = whatsapp + '&text=Ol%C3%A1%20DSM!%20Gostaria%20de%20um%20aten
 const map = 'https://www.google.com/maps/search/?api=1&query=Rua%20Deputado%20At%C3%ADlio%20de%20Almeida%20Barbosa%2C%2076%20-%20Bacacheri%2C%20Curitiba';
 const heading = 'Contabilidade em Curitiba para abrir e cuidar da sua empresa';
 const description = 'DSM Contabilidade no Bacacheri, Curitiba: abertura de empresas, contabilidade mensal, consultoria fiscal e folha de pagamento. Fale com Davy Santos Morais.';
+const serviceAnchors: Record<string, string> = { contabilidade: 'contabilidade-mensal', fiscal: 'regularizacao', folha: 'folha-pagamento' };
 const services = [
   { id: 'abertura', title: 'Abertura de empresas', intro: 'Quer tirar sua empresa do papel? Entenda quais informações reunir e os passos para formalizar o seu negócio.', action: 'Entender a abertura de empresa', url: '/abrir-empresa', alt: 'Ilustração de empreendedor organizando documentos para abrir uma empresa', Icon: Building2 },
   { id: 'contabilidade', title: 'Contabilidade mensal', intro: 'Já tem CNPJ? Organize a rotina de documentos e entregas ou saiba como trocar de contador sem perder o histórico.', action: 'Solicitar contabilidade mensal', url: '#contato-principal', alt: 'Ilustração de calendário e documentos de uma rotina contábil mensal', Icon: CalendarDays },
@@ -64,7 +65,7 @@ export default function Home() {
             <a className="dsm-text-phone" href="tel:+5541991430464"><Phone aria-hidden="true" size={18} /> Prefere ligar? (41) 99143-0464</a>
           </div>
           <figure className="dsm-hero-art">
-            <Artwork name="hero" alt="Ilustração de um contador e uma empreendedora conversando sobre os próximos passos da empresa" priority />
+            <Artwork name="hero" alt="Ilustração de duas pessoas revisando uma lista de documentos em um escritório" priority />
             <figcaption><span aria-hidden="true"><ClipboardCheck size={25} /></span><strong>Atendimento direto com o contador<small>Presencial no Bacacheri ou por WhatsApp</small></strong></figcaption>
           </figure>
         </div>
@@ -73,7 +74,7 @@ export default function Home() {
         <div className="dsm-section-intro"><span className="dsm-eyebrow">Serviços contábeis</span><h2 id="dsm-servicos-heading">O que você precisa resolver?</h2><p>Escolha o assunto que quer resolver agora.</p></div>
         <div className="dsm-service-grid">
           {services.map(({ id, title, intro, action, url, alt, Icon }) => (
-            <article className="dsm-service" key={id}>
+            <article className="dsm-service" key={id} id={serviceAnchors[id]}>
               <Artwork name={id} alt={alt} />
               <div className="dsm-service-copy">
                 <span className="dsm-service-icon"><Icon aria-hidden="true" size={22} /></span>

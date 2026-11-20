@@ -34,7 +34,7 @@ export default function FloatingShare() {
 
   return (
     <div 
-      className="fixed left-0 sm:left-4 top-[72%] -translate-y-1/2 z-55 transition-all duration-300 pointer-events-none"
+      className="dsm-floating-share fixed left-0 sm:left-4 top-[72%] -translate-y-1/2 z-55 transition-all duration-300 pointer-events-none"
       id="floating-share-widget"
     >
       <div className="flex flex-col gap-2 items-start pointer-events-auto">

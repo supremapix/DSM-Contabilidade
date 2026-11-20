@@ -68,3 +68,16 @@
 @media(max-width:28rem){.dsm-wrap{width:calc(100% - 1.75rem)}.dsm-hero-copy .dsm-actions .dsm-btn{width:100%}}
 .test-fontSize-large .dsm-home .dsm-wrap p,.test-fontSize-large .dsm-home .dsm-wrap li{font-size:1.125rem}
 .test-fontSize-xl .dsm-home .dsm-wrap p,.test-fontSize-xl .dsm-home .dsm-wrap li,.test-fontSize-xl .dsm-home .dsm-btn{font-size:1.25rem}
+.dsm-home-mobile-nav{display:none}
+.dsm-home .dsm-service{scroll-margin-top:10rem}
+@media(max-width:63.99rem){
+  body:has(.dsm-home) .dsm-header-legacy-top,body:has(.dsm-home) .dsm-header-legacy-menu{display:none}
+  body:has(.dsm-home) .dsm-home-mobile-nav{display:flex;justify-content:space-between;align-items:center;gap:.65rem;padding:.55rem clamp(.85rem,3vw,1.8rem);min-height:3.85rem;background:white;border-bottom:1px solid #dce5f5}
+  .dsm-home-mobile-nav img{width:7.75rem;max-width:100%;height:auto;display:block}
+  .dsm-home-mobile-nav a{min-width:0}
+  .dsm-home-mobile-nav button{min-height:2.75rem;display:inline-flex;align-items:center;gap:.38rem;padding:.45rem .75rem;border-radius:.55rem;border:1px solid #a3b5da;color:#0b255f;background:#f4f8ff;font-size:1rem;font-weight:750;cursor:pointer}
+  body:has(.dsm-home) .dsm-floating-share{top:auto;bottom:calc(.85rem + env(safe-area-inset-bottom));left:env(safe-area-inset-left);translate:none;--tw-translate-y:0}
+  .dsm-hero{padding-top:clamp(1.75rem,6vw,3.5rem)}
+  .dsm-hero-grid{gap:1.4rem}
+}
+@media(prefers-reduced-motion:reduce){body:has(.dsm-home) #dsm-header,body:has(.dsm-home) .dsm-floating-share *,body:has(.dsm-home) #sticky-whatsapp-bubble *{animation:none!important;transition:none!important}}

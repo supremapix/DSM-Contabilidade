@@ -30,11 +30,12 @@ export default function SitemapPage() {
   const curitibaSede = allLocations.filter(l => l.id === 'curitiba-sede');
 
   // Filter lists based on search parameter
+  const noAccent = (value: string) => value.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const filterList = (list: typeof allLocations) => {
     if (!searchQuery.trim()) return list;
     return list.filter(item => 
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      item.description.toLowerCase().includes(searchQuery.toLowerCase())
+      noAccent(item.name).includes(noAccent(searchQuery)) || 
+      noAccent(item.description).includes(noAccent(searchQuery))
     );
   };
 
@@ -45,7 +46,7 @@ export default function SitemapPage() {
   const filteredSede = filterList(curitibaSede);
 
   const totalResults = 
-    (searchQuery.trim() ? mainPages.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase())).length : mainPages.length) +
+    (searchQuery.trim() ? mainPages.filter(p => noAccent(p.name).includes(noAccent(searchQuery))).length : mainPages.length) +
     filteredOfficial.length + 
     filteredPopular.length + 
     filteredMetro.length + 
@@ -53,7 +54,7 @@ export default function SitemapPage() {
     filteredSede.length;
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800">
+    <div data-dsm-page="mapa" className="dsm-tool dsm-sitemap bg-slate-50 min-h-screen text-slate-800">
       
       {/* Dynamic SEO Configuration */}
       <EnhancedSEO 
@@ -63,8 +64,8 @@ export default function SitemapPage() {
       />
 
       {/* Header Banner */}
-      <div className="relative py-12 bg-gradient-to-b from-blue-50/50 via-slate-50 to-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="dsm-tool-banner">
+        <div className="dsm-wrap dsm-tool-wrap">
           
           <Link to="/" className="inline-flex items-center gap-2 text-slate-650 hover:text-blue-800 font-semibold text-sm mb-4 bg-white px-3 py-1.5 rounded-full border border-slate-200 transition-colors shadow-xs">
             <ArrowLeft size={14} />
@@ -78,10 +79,10 @@ export default function SitemapPage() {
                 <span>MAPA DE NAVEGAÇÃO COMPLETO</span>
               </div>
               <h1 className="text-3xl sm:text-4xl font-black text-slate-900 font-display tracking-tight">
-                Mapa do Site (Sitemap)
+                Encontre uma página da DSM
               </h1>
               <p className="text-slate-600 max-w-2xl text-sm sm:text-base leading-relaxed">
-                Localize rapidamente qualquer canal de atendimento, formulário de contato ou portal de assessoria tributária local da DSM Contabilidade.
+                Procure um serviço, um bairro ou uma cidade. Você também encontra aqui os canais de contato e os links das páginas institucionais.
               </p>
             </div>
 
@@ -90,7 +91,7 @@ export default function SitemapPage() {
               <Search className="absolute left-3.5 top-3 text-slate-400" size={18} />
               <input 
                 type="text"
-                placeholder="Filtrar links e bairros..."
+                aria-label="Procurar páginas, bairros ou cidades" placeholder="Ex.: Bacacheri, Pinhais"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-white border border-slate-250 hover:border-slate-350 focus:border-blue-500 rounded-xl py-2.5 pl-10 pr-4 text-sm font-semibold transition-colors shadow-xs"
@@ -108,14 +109,14 @@ export default function SitemapPage() {
       </div>
 
       {/* Grid containing links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="dsm-wrap dsm-tool-directory py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Main Pages column / Left and Central sidebar */}
           <div className="lg:col-span-4 space-y-6">
             
             {/* Box 1: Institutional Core */}
-            {(!searchQuery.trim() || mainPages.some(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))) && (
+            {(!searchQuery.trim() || mainPages.some(p => noAccent(p.name).includes(noAccent(searchQuery)))) && (
               <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest border-b border-slate-100 pb-2.5 flex items-center gap-2">
                   <FileText className="text-blue-700 shrink-0" size={16} />
@@ -123,7 +124,7 @@ export default function SitemapPage() {
                 </h3>
                 <nav className="flex flex-col gap-2" aria-label="Negação Geral do Site">
                   {mainPages
-                    .filter(p => !searchQuery.trim() || p.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .filter(p => !searchQuery.trim() || noAccent(p.name).includes(noAccent(searchQuery)))
                     .map((p, idx) => (
                       <Link 
                         key={idx} 

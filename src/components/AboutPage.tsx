@@ -6,31 +6,33 @@
 import React from 'react';
 import { Award, ShieldCheck, Heart, Users, MapPin, Phone, Sparkles, TrendingUp, Calendar, CheckCircle } from 'lucide-react';
 import EnhancedSEO from './EnhancedSEO';
+import DsmContactActions from './DsmContactActions';
 
 export default function AboutPage() {
   const dsmAge = new Date().getFullYear() - 1982;
 
   return (
-    <div className="bg-slate-50 py-12 text-slate-800">
+    <div data-dsm-page="quem-somos" className="dsm-tool dsm-about bg-slate-50 text-slate-800">
       <EnhancedSEO 
         title="Quem Somos — História e Confiança | DSM Contabilidade"
         description="Conheça a história da DSM Contabilidade no Bacacheri, Curitiba. Há mais de 40 anos prestando assessoria contábil de excelência liderada por Davy Santos Morais."
         keywords={["quem somos dsm contabilidade", "historia dsm contabilidade", "contador davy santos morais", "contabilidade curitiba tradicional", "escritorio contabilidade bacacheri"]}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="dsm-wrap dsm-tool-wrap space-y-10">
         
         {/* Page Hero Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="dsm-tool-intro space-y-4">
           <span className="bg-blue-100 text-blue-800 border border-blue-200 font-bold px-3 py-1 rounded-full text-xs sm:text-sm uppercase tracking-widest inline-flex items-center gap-1.5">
             <Award size={14} className="text-blue-700" /> Tradição e Atendimento Humano
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight leading-none">
-            Nossa História, Seu <span className="text-blue-700">Crescimento Seguro</span>
+            Conheça a DSM Contabilidade no Bacacheri
           </h1>
           <p className="text-base sm:text-lg text-slate-600">
-            Com sede própria no bairro Bacacheri e fundado em 1982, o escritório DSM Contabilidade une a solidez de {dsmAge} anos de mercado com a agilidade digital que o empresário do século XXI precisa.
+            Desde 1982, a DSM Contabilidade atua no Bacacheri, em Curitiba. Conheça o escritório e converse com Davy Santos Morais sobre o atendimento ao seu negócio.
           </p>
+          <DsmContactActions message="Olá, Davy! Conheci a DSM Contabilidade pelo site e gostaria de conversar." />
         </div>
 
         {/* Feature Hero Image: img-dms.png */}

@@ -110,25 +110,25 @@ export default function TransitCalculator() {
   };
 
   return (
-    <div className="py-12 bg-slate-50 text-slate-850" id="transit-calculator-app">
+    <div data-dsm-page="deslocamento" className="dsm-tool dsm-transit bg-slate-50 text-slate-800" id="transit-calculator-app">
       <EnhancedSEO 
         title="Calculadora Metropolitana de Deslocamento RMC - DSM Contabilidade"
         description="Simule uma estimativa de deslocamento até a DSM Contabilidade no Bacacheri. Valores ilustrativos, sem trânsito ao vivo; confirme o trajeto em um aplicativo de mapas."
         keywords={["calculadora deslocamento curitiba", "logistica RMC", "transporte Pinhais Curitiba", "distancia Colombo Bacacheri", "abrir empresa regiao metropolitana"]}
       />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="dsm-wrap dsm-tool-wrap dsm-tool-narrow">
         
         {/* Header Block */}
-        <div className="text-center mb-10">
+        <div className="dsm-tool-intro mb-8">
           <span className="bg-blue-100 text-blue-800 font-bold px-4 py-1.5 rounded-full border border-blue-200 text-xs sm:text-sm uppercase tracking-widest inline-flex items-center gap-1.5 mb-3">
             <Sparkles size={14} className="text-blue-900" /> Atendimento de Curitiba a Região
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-display mb-4">
-            Calculadora de Deslocamento RMC
+            Como chegar à DSM no Bacacheri
           </h1>
           <p className="text-base sm:text-lg text-slate-650 max-w-2xl mx-auto leading-relaxed">
-            Nossa sede fica no bairro <strong>Bacacheri em Curitiba</strong>. Calcule os tempos de logística, distância ou descubra que com o nosso <strong>suporte contábil 100% digital</strong>, você economiza viagens! Estreitando distâncias desde 1982.
+            Estime o deslocamento até o escritório da DSM, em Curitiba. Escolha a origem e o meio de transporte. A estimativa não usa trânsito em tempo real; confirme o trajeto antes de sair.
           </p>
         </div>
 
@@ -206,7 +206,7 @@ export default function TransitCalculator() {
               <span className="text-blue-800 text-xs font-black uppercase tracking-wider block mb-3 font-display">
                 Etapa 2: Escolha o Tipo de Transporte
               </span>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="dsm-transit-modes grid grid-cols-3 gap-3">
                 <button
                   onClick={() => setTransportMode('carro')}
                   className={`py-3 px-2.5 rounded-xl border-2 font-bold text-sm sm:text-base flex flex-col items-center gap-2 cursor-pointer transition-all ${

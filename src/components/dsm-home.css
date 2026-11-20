@@ -71,16 +71,16 @@
 .dsm-home-mobile-nav{display:none}
 .dsm-home .dsm-service{scroll-margin-top:10rem}
 @media(max-width:63.99rem){
-  body:has(.dsm-home) .dsm-header-legacy-top,body:has(.dsm-home) .dsm-header-legacy-menu{display:none}
-  body:has(.dsm-home) .dsm-home-mobile-nav{display:flex;justify-content:space-between;align-items:center;gap:.65rem;padding:.55rem clamp(.85rem,3vw,1.8rem);min-height:3.85rem;background:white;border-bottom:1px solid #dce5f5}
+  body:has(:is(.dsm-home,.dsm-tool)) .dsm-header-legacy-top,body:has(:is(.dsm-home,.dsm-tool)) .dsm-header-legacy-menu{display:none}
+  body:has(:is(.dsm-home,.dsm-tool)) .dsm-home-mobile-nav{display:flex;justify-content:space-between;align-items:center;gap:.65rem;padding:.55rem clamp(.85rem,3vw,1.8rem);min-height:3.85rem;background:white;border-bottom:1px solid #dce5f5}
   .dsm-home-mobile-nav img{width:7.75rem;max-width:100%;height:auto;display:block}
   .dsm-home-mobile-nav a{min-width:0}
   .dsm-home-mobile-nav button{min-height:2.75rem;display:inline-flex;align-items:center;gap:.38rem;padding:.45rem .75rem;border-radius:.55rem;border:1px solid #a3b5da;color:#0b255f;background:#f4f8ff;font-size:1rem;font-weight:750;cursor:pointer}
-  body:has(.dsm-home) .dsm-floating-share{top:auto;bottom:calc(.85rem + env(safe-area-inset-bottom));left:env(safe-area-inset-left);translate:none;--tw-translate-y:0}
+  body:has(:is(.dsm-home,.dsm-tool)) .dsm-floating-share{top:auto;bottom:calc(.85rem + env(safe-area-inset-bottom));left:env(safe-area-inset-left);translate:none;--tw-translate-y:0}
   .dsm-hero{padding-top:clamp(1.75rem,6vw,3.5rem)}
   .dsm-hero-grid{gap:1.4rem}
 }
-@media(prefers-reduced-motion:reduce){body:has(.dsm-home) #dsm-header,body:has(.dsm-home) .dsm-floating-share *,body:has(.dsm-home) #sticky-whatsapp-bubble *{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){body:has(:is(.dsm-home,.dsm-tool)) #dsm-header,body:has(:is(.dsm-home,.dsm-tool)) .dsm-floating-share *,body:has(:is(.dsm-home,.dsm-tool)) #sticky-whatsapp-bubble *{animation:none!important;transition:none!important}}
 
 .dsm-inner-list{display:grid;list-style:decimal;margin:0;padding-left:1.6rem;gap:.9rem}
 .dsm-inner-list li{padding:.8rem;border:1px solid var(--line);border-radius:.85rem}
@@ -92,3 +92,16 @@
 .dsm-inner .dsm-places .dsm-btn{margin:0}
 .dsm-inner .dsm-places{grid-template-columns:minmax(0,1fr)}
 .dsm-inner .dsm-places a[href^="mailto:"]{overflow-wrap:anywhere;max-width:100%}
+
+.dsm-tool{--ink:#12234a;--navy:#0b255f;--line:#dce5f5;--muted:#3a4b6b;--blue:#163a8c;--green:#157649;color:var(--ink);background:#f5f8fe;overflow-wrap:break-word}
+.dsm-tool-wrap{padding-block:clamp(1.75rem,5vw,4.5rem)}
+.dsm-tool-narrow{max-width:61rem}
+.dsm-tool-intro{max-width:48rem}
+.dsm-tool h1{font-size:clamp(2rem,4.65vw,3.85rem);line-height:1.1;font-weight:780;letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
+.dsm-tool .dsm-tool-intro p,.dsm-tool .dsm-tool-banner p{font-size:1.0625rem;line-height:1.65;color:var(--muted)}
+.dsm-tool :focus-visible{outline:3px solid #2e56b3;outline-offset:3px}
+.dsm-tool-banner{background:linear-gradient(135deg,#f7faff,#e6efff);border-bottom:1px solid var(--line)}
+.dsm-tool .dsm-tool-directory a{min-height:2.75rem}
+.dsm-tool select,.dsm-tool input{max-width:100%;font-size:1rem}
+@media(max-width:24rem){.dsm-transit-modes{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.dsm-tool *{animation:none!important;transition:none!important}}

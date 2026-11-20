@@ -101,7 +101,7 @@ async function runPrerender() {
     title: 'Calculadora Metropolitana de Deslocamento RMC — DSM Contabilidade',
     description: 'Simule uma estimativa de deslocamento até a DSM Contabilidade no Bacacheri. Valores ilustrativos, sem trânsito ao vivo; confirme o trajeto em um aplicativo de mapas.',
     keywords: 'calculadora deslocamento curitiba, distancia pinhais curitiba, transito RMC, logistica bacacheri',
-    bodyTitle: 'Calculadora Logística Metropolitana RMC',
+    bodyTitle: 'Como chegar à DSM no Bacacheri',
     priority: '0.8'
   });
 
@@ -119,7 +119,7 @@ async function runPrerender() {
     title: 'Quem Somos — Nossa História desde 1982 | DSM Contabilidade',
     description: 'Conheça a nossa trajetória! Liderada por Davy Santos Morais, a DSM Contabilidade se orgulha de fornecer atendimento próximo, ágil e contador exclusivo para cada cliente.',
     keywords: 'historia dsm contabilidade, quem e davy santos morais, contabilidade tradicional curitiba, fundacao dsm curitiba',
-    bodyTitle: 'Trajetória e Tradição — DSM Contabilidade',
+    bodyTitle: 'Conheça a DSM Contabilidade no Bacacheri',
     priority: '0.8'
   });
 

@@ -16,6 +16,8 @@ import ContactPage from './components/ContactPage';
 import LocationPage from './components/LocationPage';
 import AboutPage from './components/AboutPage';
 import SitemapPage from './components/SitemapPage';
+import AccountingEditorial from './components/AccountingEditorial';
+import accountingHistory from './data/accountingHistory.json';
 import FloatingShare from './components/FloatingShare';
 
 // Scroll to top on route navigate
@@ -112,6 +114,8 @@ export default function App() {
 
               {/* Complete catalog of pages and locations */}
               <Route path="/mapa-do-site" element={<SitemapPage />} />
+              <Route path="/blog" element={<AccountingEditorial index />} />
+              <Route path={'/' + accountingHistory.slug} element={<AccountingEditorial />} />
 
               {/* Dynamic location routes supporting local SEO indexing - catch-all to route with maximum flexibility */}
               <Route path="/contabilidade-em/*" element={<LocationPage />} />

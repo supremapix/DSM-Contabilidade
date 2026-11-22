@@ -102,6 +102,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
+                  Blog de Contabilidade
+                </Link>
+              </li>
+              <li>
                 <Link to="/abrir-empresa" className="hover:text-blue-400 text-slate-200 transition-colors block text-base font-semibold">
                   Abertura Rápida de Empresas
                 </Link>

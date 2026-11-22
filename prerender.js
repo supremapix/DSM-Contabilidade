@@ -5,6 +5,7 @@
 
 import fs from 'fs';
 import path from 'path';
+const history = JSON.parse(fs.readFileSync(new URL('./src/data/accountingHistory.json', import.meta.url), 'utf8'));
 
 // Helper to normalized slugify text matching src/data/locations.ts
 function slugify(text) {
@@ -181,6 +182,11 @@ async function runPrerender() {
     });
   });
 
+  routes.push(
+    { path: 'blog', title: 'Blog da DSM Contabilidade', description: 'Artigos e guias da DSM Contabilidade, no Bacacheri, Curitiba.', bodyTitle: 'Blog da DSM Contabilidade', keywords: 'blog de contabilidade, DSM, Curitiba', priority: '0.6' },
+    { path: history.slug, title: history.title + ' | DSM Contabilidade', description: history.description, bodyTitle: history.title, keywords: 'história da contabilidade, Pacioli, Sped', priority: '0.6', history: true },
+  );
+
   // Pre-render pages loop
   routes.forEach(route => {
     const routeDirPath = path.join(distPath, route.path);
@@ -229,7 +235,19 @@ async function runPrerender() {
       "url": canonicalUrl
     };
 
-    const seoImage = 'https://img.dsmcontabilidade.digital/cartao-contador.png';
+    const seoImage = route.history ? history.base + history.image : 'https://img.dsmcontabilidade.digital/cartao-contador.png';
+    const extraHead = route.history ?
+      '<meta name="robots" content="index,follow,max-image-preview:large" />' +
+      '<meta property="og:image:width" content="' + history.width + '" />' +
+      '<meta property="og:image:height" content="' + history.height + '" />' +
+      '<meta property="og:image:alt" content="' + history.alt + '" />' +
+      '<script type="application/ld+json">' + JSON.stringify({
+        '@context': 'https://schema.org', '@type': 'BlogPosting',
+        headline: history.title, description: history.description, datePublished: history.date,
+        image: [seoImage], mainEntityOfPage: canonicalUrl,
+        author: { '@type': 'Organization', name: 'DSM Contabilidade', url: history.base },
+        publisher: { '@type': 'Organization', name: 'DSM Contabilidade', url: history.base }, inLanguage: 'pt-BR'
+      }) + '</script>' : '';
 
     // Compile customized head insertions
     const customHead = `
@@ -243,7 +261,7 @@ async function runPrerender() {
   <link rel="apple-touch-icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
   <link rel="shortcut icon" href="https://contadoremcuritiba.dsmcontabilidade.digital/assets/images/dsm-contabilidade-bacacheri-em-curitiba-96x96.png" />
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="${route.history ? 'article' : 'website'}" />
   <meta property="og:title" content="${route.title}" />
   <meta property="og:description" content="${route.description}" />
   <meta property="og:url" content="${canonicalUrl}" />
@@ -258,6 +276,7 @@ async function runPrerender() {
   <link rel="preconnect" href="https://api.whatsapp.com" />
   <script type="application/ld+json">${JSON.stringify(schemaIdentity)}</script>
   <script type="application/ld+json">${JSON.stringify(schemaPageDetails)}</script>
+  ${extraHead}
 `;
 
     const internalDetails = route.path === 'abrir-empresa' ? `
@@ -274,12 +293,20 @@ async function runPrerender() {
       <p>Edifício Marsala. Rua Deputado Atílio de Almeida Barbosa, 76, Bacacheri, Curitiba – PR. Segunda a sexta, das 8h30 às 18h.</p>
       ` : route.path === 'mapa-do-site' ? `
       <h2>Páginas principais</h2>
-      <ul><li><a href="/">Início</a></li><li><a href="/quem-somos">Quem somos</a></li><li><a href="/abrir-empresa">Abertura de empresa</a></li><li><a href="/contato">Contato</a></li><li><a href="/calculadora-deslocamento">Calculadora de deslocamento</a></li></ul>
+      <ul><li><a href="/">Início</a></li><li><a href="/quem-somos">Quem somos</a></li><li><a href="/blog">Blog da DSM Contabilidade</a></li><li><a href="/abrir-empresa">Abertura de empresa</a></li><li><a href="/contato">Contato</a></li><li><a href="/calculadora-deslocamento">Calculadora de deslocamento</a></li></ul>
       <h2>Atendimento em Curitiba e região</h2>
       <p><a href="/contabilidade-em/curitiba/bairro-bacacheri">Bacacheri</a> · <a href="/contabilidade-em/curitiba/bairro-agua-verde">Água Verde</a> · <a href="/contabilidade-em/regiao-metropolitana/pinhais">Pinhais</a></p>
       ` : '';
     // Static body to put inside <div id="root"> so bots see content on Ctrl+U
-    const staticBodyText = route.path === '' ? `
+    const editorialBody = route.history ?
+      '<nav aria-label="Você está aqui"><a href="/">Início</a> / <a href="/blog">Blog</a></nav>' +
+      '<article><h1>' + history.title + '</h1><p>' + history.deck + '</p><p>DSM Contabilidade · <time datetime="' + history.date + '">' + history.humanDate + '</time></p>' +
+      '<figure style="margin:1rem 0"><img style="width:100%;height:auto;border-radius:1rem" src="' + history.image + '" alt="' + history.alt + '" width="' + history.width +
+      '" height="' + history.height + '" fetchpriority="high" decoding="async"><figcaption>' + history.caption + '</figcaption></figure>' +
+      history.body + '<p><a href="/blog">Voltar ao blog</a></p></article>' :
+      '<h1>Blog da DSM Contabilidade</h1><article><h2><a href="/' + history.slug + '">' + history.title + '</a></h2><p>' + history.deck + '</p></article>';
+    const staticBodyText = route.history || route.path === 'blog' ?
+      '<main id="root-static" style="margin:0 auto;max-width:900px;padding:clamp(1rem,5vw,3rem);font:1rem/1.7 system-ui;color:#0d1e3d">' + editorialBody + '</main>' : route.path === '' ? `
     <main id="root-static" style="color:#12234a;background:#f7faff;padding:clamp(1.25rem,5vw,5rem);font-family:system-ui,sans-serif;line-height:1.6">
       <p>Bacacheri · Curitiba</p>
       <h1 style="font-size:clamp(2rem,5.2vw,4.35rem);line-height:1.05;max-width:14ch">${route.bodyTitle}</h1>

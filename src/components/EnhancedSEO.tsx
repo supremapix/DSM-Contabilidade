@@ -14,6 +14,7 @@ interface EnhancedSEOProps {
   canonicalUrl?: string;
   type?: 'website' | 'article' | 'localbusiness';
   schema?: Record<string, any>;
+  editorialImage?: { url: string; alt: string; width: number; height: number };
   locationName?: string;
 }
 
@@ -24,6 +25,7 @@ export default function EnhancedSEO({
   canonicalUrl,
   type = 'localbusiness',
   schema,
+  editorialImage,
   locationName
 }: EnhancedSEOProps) {
   const { pathname } = useLocation();
@@ -52,7 +54,7 @@ export default function EnhancedSEO({
   const allKeywords = Array.from(new Set([...defaultKeywords, ...keywords]));
   
   // Determine SEO image based on page context
-  const seoImage = "https://img.dsmcontabilidade.digital/cartao-contador.png";
+  const seoImage = editorialImage?.url ?? "https://img.dsmcontabilidade.digital/cartao-contador.png";
 
   // Specific local business schema for DSM Contabilidade (Sede Bacacheri)
   const dsmLocalBusinessSchema = {
@@ -143,15 +145,16 @@ export default function EnhancedSEO({
       <link rel="dns-prefetch" href="https://api.whatsapp.com" />
 
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
+      {editorialImage && <meta name="robots" content="index,follow,max-image-preview:large" />}
+      <meta property="og:type" content={type === "article" ? "article" : "website"} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="DSM Contabilidade" />
       <meta property="og:image" content={seoImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="DSM Contabilidade Logo Oficial" />
+      <meta property="og:image:width" content={String(editorialImage?.width ?? 1200)} />
+      <meta property="og:image:height" content={String(editorialImage?.height ?? 630)} />
+      <meta property="og:image:alt" content={editorialImage?.alt ?? "DSM Contabilidade Logo Oficial"} />
       <meta property="og:locale" content="pt_BR" />
 
       {/* Twitter Card */}

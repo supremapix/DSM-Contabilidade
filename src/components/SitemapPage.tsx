@@ -17,6 +17,7 @@ export default function SitemapPage() {
   const mainPages = [
     { name: "Início", path: "/" },
     { name: "Quem Somos", path: "/quem-somos" },
+    { name: "Blog da DSM Contabilidade", path: "/blog" },
     { name: "Abrir Empresa", path: "/abrir-empresa" },
     { name: "Calculadora de Deslocamento Metropolitana", path: "/calculadora-deslocamento" },
     { name: "Contato / Falar com o Contador", path: "/contato" }

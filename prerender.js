@@ -136,12 +136,13 @@ async function runPrerender() {
 
   // 2. Add Official neighborhoods (Curitiba)
   OFFICIAL_BAIRROS.forEach(b => {
+    const sede = b === 'Bacacheri';
     routes.push({
       path: `contabilidade-em/curitiba/bairro-${slugify(b)}`,
-      title: `Contabilidade e Abertura de Empresa no Bairro ${b} em Curitiba | DSM`,
-      description: `Buscando escritório de contabilidade qualificado no bairro ${b} em Curitiba PR? Atendimento próximo de contador exclusivo e abertura ágil de CNPJ pela DSM.`,
+      title: sede ? 'Contabilidade no Bacacheri, Curitiba | DSM Contabilidade' : `Contabilidade e Abertura de Empresa no Bairro ${b} em Curitiba | DSM`,
+      description: sede ? 'Contabilidade para empresas no Bacacheri, com atendimento na sede da DSM em Curitiba. Converse sobre abertura, troca de contador ou organização das rotinas da sua empresa.' : `Buscando escritório de contabilidade qualificado no bairro ${b} em Curitiba PR? Atendimento próximo de contador exclusivo e abertura ágil de CNPJ pela DSM.`,
       keywords: `contabilidade ${b.toLowerCase()}, escritorio contabilidade ${b.toLowerCase()}, abrir empresa ${b.toLowerCase()}, contador ${b.toLowerCase()}`,
-      bodyTitle: `Atendimento Contábil Consultivo Exclusivo no Bairro ${b}`,
+      bodyTitle: sede ? 'Contabilidade no Bacacheri, Curitiba' : `Atendimento Contábil Consultivo Exclusivo no Bairro ${b}`,
       priority: '0.7'
     });
   });
@@ -279,7 +280,17 @@ async function runPrerender() {
   ${extraHead}
 `;
 
-    const internalDetails = route.path === 'abrir-empresa' ? `
+    const internalDetails = route.path === 'contabilidade-em/curitiba/bairro-bacacheri' ? `
+      <section aria-labelledby="primeira-conversa-bacacheri">
+        <h2 id="primeira-conversa-bacacheri">O que preparar para conversar com um contador no Bacacheri</h2>
+        <ul>
+          <li><strong>Se ainda vai abrir:</strong> descreva sua atividade, se terá sócios e se já definiu o endereço de operação.</li>
+          <li><strong>Se quer trocar de escritório:</strong> separe a lista de rotinas que já são atendidas e indique quais pontos precisam melhorar.</li>
+          <li><strong>Se já tem equipe:</strong> anote o número de funcionários e quais tarefas de folha quer incluir no atendimento.</li>
+        </ul>
+        <p>Na primeira mensagem, não envie senhas nem documentos pessoais. A equipe indica o canal adequado se precisar desses dados.</p>
+        <p><a href="/abrir-empresa">Ver o guia de abertura de empresa</a></p>
+      </section>` : route.path === 'abrir-empresa' ? `
       <h2>O que ter em mãos na primeira conversa</h2>
       <p>Descreva a atividade, a cidade e o endereço pretendido. Informe se haverá sócios ou empregados. Não envie documentos pessoais no primeiro contato.</p>
       <p>Em Curitiba, veja quando se aplica a <a href="https://servicos.curitiba.pr.gov.br/consulta-previa-de-viabilidade-cpv-online/199">Consulta Prévia de Viabilidade</a>.</p>

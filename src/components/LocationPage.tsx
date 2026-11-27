@@ -111,7 +111,9 @@ export default function LocationPage() {
     window.open(`https://api.whatsapp.com/send?phone=5541991430464&text=${encodeURIComponent(chatText)}`, '_blank');
   };
 
+  const isBacacheri = fullSlug === 'curitiba/bairro-bacacheri';
   const getPageTitle = () => {
+    if (isBacacheri) return 'Contabilidade no Bacacheri, Curitiba | DSM Contabilidade';
     if (location.type === 'estado') {
       return `Contabilidade em ${location.name} | Abertura de Empresa Fácil — DSM`;
     }
@@ -122,6 +124,7 @@ export default function LocationPage() {
   };
 
   const getSubHeading = () => {
+    if (isBacacheri) return 'Contabilidade para empresas no Bacacheri, com atendimento na sede da DSM em Curitiba. Converse sobre abertura, troca de contador ou organização das rotinas da sua empresa.';
     if (location.type === 'estado') {
       return `Atendimento contábil completo e abertura simplificada de empresas para empresários em qualquer município de ${location.name}.`;
     }
@@ -160,26 +163,26 @@ export default function LocationPage() {
             <div className="lg:col-span-8 space-y-6">
               <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 text-blue-800 font-bold px-3 py-1 rounded-full text-xs">
                 <MapPin size={12} className="text-red-500 animate-pulse" />
-                <span>ATENDIMENTO EXCLUSIVO EM {location.name.toUpperCase()}</span>
+                <span>{isBacacheri ? 'SEDE DA DSM NO BACACHERI' : `ATENDIMENTO EXCLUSIVO EM ${location.name.toUpperCase()}`}</span>
               </div>
               
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight leading-tight">
-                Escritório de Contabilidade Especializado em <span className="text-blue-700">{location.name}</span>
+                {isBacacheri ? <>Contabilidade no <span className="text-blue-700">Bacacheri</span>, Curitiba</> : <>Escritório de Contabilidade Especializado em <span className="text-blue-700">{location.name}</span></>}
               </h1>
               
               <p className="text-lg sm:text-xl text-slate-650 max-w-3xl font-light leading-relaxed">
-                {getSubHeading()} Aliamos tecnologia de ponta com um acompanhamento próximo para simplificar as rotinas de constituição, folha e impostos de sua marca.
+                {getSubHeading()}{!isBacacheri && ' Aliamos tecnologia de ponta com um acompanhamento próximo para simplificar as rotinas de constituição, folha e impostos de sua marca.'}
               </p>
 
               {/* Unique stats bar layout */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 text-xs sm:text-sm">
                 <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
-                  <span className="text-slate-500 block mb-0.5">Contador Exclusivo:</span>
-                  <span className="text-slate-900 font-extrabold text-base block">Sim, Incluso!</span>
+                  <span className="text-slate-500 block mb-0.5">{isBacacheri ? 'Primeira conversa:' : 'Contador Exclusivo:'}</span>
+                  <span className="text-slate-900 font-extrabold text-base block">{isBacacheri ? 'Escopo da empresa' : 'Sim, Incluso!'}</span>
                 </div>
                 <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
-                  <span className="text-slate-500 block mb-0.5">Tempo de Abertura:</span>
-                  <span className="text-green-700 font-extrabold text-base block">A partir de 24h</span>
+                  <span className="text-slate-500 block mb-0.5">{isBacacheri ? 'Para novos negócios:' : 'Tempo de Abertura:'}</span>
+                  <span className="text-green-700 font-extrabold text-base block">{isBacacheri ? 'Abertura e orientação' : 'A partir de 24h'}</span>
                 </div>
                 <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs col-span-2 sm:col-span-1">
                   <span className="text-slate-500 block mb-0.5">Proximidade Bacacheri:</span>
@@ -193,9 +196,9 @@ export default function LocationPage() {
             {/* Side CTA Card */}
             <div className="lg:col-span-4 bg-gradient-to-br from-blue-900 to-indigo-950 border border-blue-800/40 rounded-2xl p-6 shadow-2xl text-center space-y-4">
               <Building2 className="mx-auto text-blue-300" size={32} />
-              <h3 className="text-lg font-bold text-white uppercase tracking-wider">Abertura Grátis de CNPJ</h3>
+              <h3 className="text-lg font-bold text-white uppercase tracking-wider">{isBacacheri ? 'Converse com a DSM' : 'Abertura Grátis de CNPJ'}</h3>
               <p className="text-xs text-blue-100">
-                Garantimos a constituição acelerada de sua microempresa ou MEI em <strong>{location.name}</strong> contratando qualquer plano de assessoria contábil mensal!
+                {isBacacheri ? 'Conte em que fase está seu negócio e receba orientação sobre o escopo e os próximos passos.' : <>Garantimos a constituição acelerada de sua microempresa ou MEI em <strong>{location.name}</strong> contratando qualquer plano de assessoria contábil mensal!</>}
               </p>
               <a
                 href={formattedWhatsAppContact}
@@ -204,7 +207,7 @@ export default function LocationPage() {
                 className="w-full bg-[#0052ff] hover:bg-[#003ecc] text-white font-black py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-transform hover:scale-102 text-sm shadow-md cursor-pointer"
               >
                 <MessageSquare size={16} />
-                <span>Abrir Empresa Agora</span>
+                <span>{isBacacheri ? 'Pedir uma orientação' : 'Abrir Empresa Agora'}</span>
               </a>
               <span className="text-[10px] text-slate-300 block">Suporte desde 1982 em Curitiba e Região</span>
             </div>
@@ -223,6 +226,16 @@ export default function LocationPage() {
               Por que a DSM Contabilidade é a escolha correta para {location.name}?
             </h2>
 
+            {isBacacheri && <section aria-labelledby="primeira-conversa-bacacheri" className="rounded-2xl border border-blue-200 bg-blue-50 p-5 sm:p-6">
+              <h3 id="primeira-conversa-bacacheri" className="text-lg font-bold text-slate-900">O que preparar para conversar com um contador no Bacacheri</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                <li><strong>Se ainda vai abrir:</strong> descreva sua atividade, se terá sócios e se já definiu o endereço de operação.</li>
+                <li><strong>Se quer trocar de escritório:</strong> separe a lista de rotinas que já são atendidas e indique quais pontos precisam melhorar.</li>
+                <li><strong>Se já tem equipe:</strong> anote o número de funcionários e quais tarefas de folha quer incluir no atendimento.</li>
+              </ul>
+              <p className="mt-3 text-sm text-slate-700">Na primeira mensagem, não envie senhas nem documentos pessoais. A equipe indica o canal adequado se precisar desses dados.</p>
+              <Link to="/abrir-empresa" className="mt-3 inline-flex min-h-11 items-center font-semibold text-blue-800 underline underline-offset-4">Ver o guia de abertura de empresa</Link>
+            </section>}
             {/* Localized Semantic SEO Trust Card */}
             <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 p-3 sm:p-4 shadow-md">
               <img 

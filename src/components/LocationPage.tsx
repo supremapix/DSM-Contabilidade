@@ -187,7 +187,7 @@ export default function LocationPage() {
                 <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs col-span-2 sm:col-span-1">
                   <span className="text-slate-500 block mb-0.5">Proximidade Bacacheri:</span>
                   <span className="text-blue-700 font-extrabold text-base block">
-                    {location.distanceFromDSM === 0 ? 'Sede Própria' : `~${location.distanceFromDSM} km de distância`}
+                    {isBacacheri || location.distanceFromDSM === 0 ? 'Sede no bairro' : `~${location.distanceFromDSM} km de distância`}
                   </span>
                 </div>
               </div>
@@ -246,12 +246,12 @@ export default function LocationPage() {
                 referrerPolicy="no-referrer"
               />
               <p className="text-[11px] text-slate-500 text-center mt-2.5 font-bold uppercase tracking-wider">
-                Assessoria Credenciada para empresas em {location.name} — CRC/PR Ouvidoria Ativa
+                {isBacacheri ? 'Atendimento contábil no Bacacheri' : <>Assessoria Credenciada para empresas em {location.name} — CRC/PR Ouvidoria Ativa</>}
               </p>
             </div>
             
             <p className="text-base text-slate-650 leading-relaxed pt-2">
-              O mercado contábil de <strong>{location.name}</strong> e Curitiba exige respostas imediatas e consultores fiscais que conheçam de perto as regras das prefeituras municipais, alvarás locais e obrigações federativas. Na DSM, abolimos as centrais de atendimento automatizado.
+              {isBacacheri ? 'A DSM tem sede no Edifício Marsala. Na primeira conversa, informe em que fase está sua empresa e quais rotinas precisa organizar.' : <>O mercado contábil de <strong>{location.name}</strong> e Curitiba exige respostas imediatas e consultores fiscais que conheçam de perto as regras das prefeituras municipais, alvarás locais e obrigações federativas. Na DSM, abolimos as centrais de atendimento automatizado.</>}
             </p>
 
             <ul className="space-y-4">
@@ -259,14 +259,14 @@ export default function LocationPage() {
                 <CheckCircle className="text-green-600 shrink-0 mt-1" size={18} />
                 <div>
                   <h4 className="font-bold text-slate-900 text-base">Atendimento Humanizado de Verdade</h4>
-                  <p className="text-sm text-slate-600">Você fala com um contador dedicado que estuda o seu negócio e responde suas dúvidas pelo WhatsApp em minutos.</p>
+                  <p className="text-sm text-slate-600">{isBacacheri ? 'Use o WhatsApp para explicar sua necessidade e combinar o atendimento com a equipe.' : 'Você fala com um contador dedicado que estuda o seu negócio e responde suas dúvidas pelo WhatsApp em minutos.'}</p>
                 </div>
               </li>
               <li className="flex gap-3">
                 <CheckCircle className="text-green-600 shrink-0 mt-1" size={18} />
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Formalização Sem Custos Desnecessários</h4>
-                  <p className="text-sm text-slate-600">Te orientamos a escolher a classificação tributária correta (Simples Nacional, Lucro Presumido) para evitar pagamento excessivo de impostos.</p>
+                  <h4 className="font-bold text-slate-900 text-base">{isBacacheri ? 'Planejamento da abertura' : 'Formalização Sem Custos Desnecessários'}</h4>
+                  <p className="text-sm text-slate-600">{isBacacheri ? 'Descreva as atividades previstas, a estrutura do negócio e o endereço para discutir as etapas da abertura.' : 'Te orientamos a escolher a classificação tributária correta (Simples Nacional, Lucro Presumido) para evitar pagamento excessivo de impostos.'}</p>
                 </div>
               </li>
               <li className="flex gap-3">
